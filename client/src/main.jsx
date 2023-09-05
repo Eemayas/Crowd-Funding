@@ -4,13 +4,14 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { StateContextProvider } from "./context";
 import App from "./App";
 import "./index.css";
-
+import MetaNotPresent from "./MetaNotPresent"
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(
-  <Router>
-    <StateContextProvider>
-      <App />
-    </StateContextProvider>
-  </Router>
-);
+const AppsTry = () => {
+  if (typeof window.ethereum !== "undefined") {
+    return <App />
+  } else {
+    return <MetaNotPresent />;
+  }
+};
+root.render(<AppsTry/>);
